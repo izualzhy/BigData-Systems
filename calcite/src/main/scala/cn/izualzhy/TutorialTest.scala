@@ -9,8 +9,8 @@ import org.apache.calcite.jdbc.CalciteConnection
 
 object TutorialTest extends App {
   val csvPath = getClass.getClassLoader.getResource("sales_from_calcite_sources").getPath
-  val csvSchema = new CsvSchema(new File(csvPath), CsvTable.Flavor.SCANNABLE)
-//  val csvSchema = new CsvSchema(new File(csvPath), CsvTable.Flavor.TRANSLATABLE)
+//  val csvSchema = new CsvSchema(new File(csvPath), CsvTable.Flavor.SCANNABLE)
+  val csvSchema = new CsvSchema(new File(csvPath), CsvTable.Flavor.TRANSLATABLE)
   val properties = new Properties()
   properties.setProperty("caseSensitive", "false")
   val connection = DriverManager.getConnection("jdbc:calcite:", properties)
@@ -18,7 +18,7 @@ object TutorialTest extends App {
   val rootSchema = calciteConnection.getRootSchema
   rootSchema.add("sales", csvSchema)
 
-  query("SELECT name FROM sales.emps")
+  query("SELECT empno, name FROM sales.emps WHERE deptno > 1")
 
   def query(sql: String): Unit = {
     println(s"****** $sql ******")

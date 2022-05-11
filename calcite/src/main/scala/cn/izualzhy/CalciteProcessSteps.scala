@@ -4,26 +4,23 @@ import java.io.File
 import java.util
 import java.util.Properties
 
-import cn.izualzhy.CalcitePlanExample.sqlTypeFactory
-import cn.izualzhy.JustTest.{cluster, logPlan, planner}
 import org.apache.calcite.adapter.csv.{CsvSchema, CsvTable}
-import org.apache.calcite.adapter.enumerable.{EnumerableConvention, EnumerableRel}
+import org.apache.calcite.adapter.enumerable.{EnumerableRel, EnumerableRelImplementor}
 import org.apache.calcite.config.{CalciteConnectionConfigImpl, CalciteConnectionProperty}
-import org.apache.calcite.interpreter.BindableConvention
 import org.apache.calcite.jdbc.{CalciteSchema, JavaTypeFactoryImpl}
-import org.apache.calcite.plan.{ConventionTraitDef, RelOptCluster, RelOptUtil}
+import org.apache.calcite.linq4j.tree.Expressions
 import org.apache.calcite.plan.RelOptTable.ViewExpander
 import org.apache.calcite.plan.hep.{HepPlanner, HepProgramBuilder}
+import org.apache.calcite.plan.{ConventionTraitDef, RelOptCluster, RelOptUtil}
 import org.apache.calcite.prepare.CalciteCatalogReader
 import org.apache.calcite.rel.RelRoot
-import org.apache.calcite.rel.`type`.{RelDataType, RelDataTypeSystem}
+import org.apache.calcite.rel.`type`.RelDataType
 import org.apache.calcite.rel.rules.CoreRules
 import org.apache.calcite.rex.RexBuilder
-import org.apache.calcite.sql.{SqlExplainFormat, SqlExplainLevel}
-import org.apache.calcite.sql.`type`.SqlTypeFactoryImpl
 import org.apache.calcite.sql.fun.SqlStdOperatorTable
 import org.apache.calcite.sql.parser.SqlParser
 import org.apache.calcite.sql.validate.{SqlValidator, SqlValidatorUtil}
+import org.apache.calcite.sql.{SqlExplainFormat, SqlExplainLevel}
 import org.apache.calcite.sql2rel.{SqlToRelConverter, StandardConvertletTable}
 import org.apache.calcite.tools.Frameworks
 
