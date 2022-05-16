@@ -18,7 +18,7 @@ object TutorialTest extends App {
   val rootSchema = calciteConnection.getRootSchema
   rootSchema.add("sales", csvSchema)
 
-  query("SELECT empno, name FROM sales.emps WHERE deptno > 1")
+  query("SELECT empno, name, deptno FROM sales.emps WHERE deptno > 20")
 
   def query(sql: String): Unit = {
     println(s"****** $sql ******")

@@ -33,4 +33,5 @@ object MyExpressionTest extends App {
 //  val result = lambdaExpr.compile().dynamicInvoke(1.0).asInstanceOf[java.lang.Double]
   val res = lambdaExpr.compile.dynamicInvoke(1: java.lang.Double).asInstanceOf[Double]
   println(res)
+
 }
