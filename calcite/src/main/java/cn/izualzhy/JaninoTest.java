@@ -98,3 +98,4 @@ public class JaninoTest {
         SimpleCompilerEvaluator();
     }
 }
+

@@ -11,7 +11,9 @@ object ExpressionsHelloWorld extends App {
   val className = "MyHelloWorld"
   val funcName = "hello"
   val params = Expressions.parameter(classOf[String], "who")
+  // hello 函数实现
   val func = Expressions.call(
+    // System.out
     Expressions.field(null, classOf[System].getField("out")),
     "println",
     Expressions.add(
@@ -21,19 +23,21 @@ object ExpressionsHelloWorld extends App {
       Expressions.constant("!")
     )
   )
-  val mainBody = Expressions.methodDecl(
+  // hello 函数整体
+  val funcBody = Expressions.methodDecl(
     Modifier.PUBLIC | Modifier.STATIC,
     java.lang.Void.TYPE,
     funcName,
     util.Arrays.asList(params),
     Blocks.toFunctionBlock(func)
   )
+  // MyHelloWorld 类实现
   val classHelloWorld = Expressions.classDecl(
     Modifier.PUBLIC,
     className,
     null,
     util.Arrays.asList(classOf[Serializable]),
-    util.Arrays.asList(mainBody)
+    util.Arrays.asList(funcBody)
   )
   val helloWorldSrc = Expressions.toString(classHelloWorld)
   println(helloWorldSrc)
