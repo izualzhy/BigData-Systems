@@ -3,15 +3,10 @@ package cn.izualzhy
 import org.apache.calcite.sql.{SqlKind, SqlSelect}
 import org.apache.calcite.sql.parser.SqlParser
 
-/**
- * Author: yingshin
- * Date: 2022/4/12 11:48
- * Package: cn.izualzhy
- * Description:
- *
- */
 object SqlParserExample extends App {
-  val sql = "SELECT * FROM emps WHERE id = 1"
+//  val sql = "SELECT * FROM emps WHERE id = 1"
+//  val sql = "SELECT Row('literal_column', a) FROM source_table"
+  val sql = "SELECT Row(a, 'literal_column') FROM source_table"
   val sqlParser = SqlParser.create(sql)
 
   val sqlNode = sqlParser.parseQuery()
