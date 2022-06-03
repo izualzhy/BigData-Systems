@@ -17,6 +17,38 @@
         <hadoop.version>2.9.0</hadoop.version>
     </properties>
 
+    <profiles>
+        <profile>
+            <id>table-planner</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.flink</groupId>
+                    <artifactId>flink-table-planner_${scala.binary.version}</artifactId>
+                    <version>${flink.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.flink</groupId>
+                    <artifactId>flink-scala_${scala.binary.version}</artifactId>
+                    <version>${flink.version}</version>
+                </dependency>
+<!--                <dependency>-->
+<!--                    <groupId>org.apache.flink</groupId>-->
+<!--                    <artifactId>flink-table-runtime</artifactId>-->
+<!--                    <version>${flink.version}</version>-->
+<!--                </dependency>-->
+            </dependencies>
+        </profile>
+        <profile>
+            <id>table-planner-loader</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.flink</groupId>
+                    <artifactId>flink-table-planner-loader</artifactId>
+                    <version>${flink.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
     <dependencies>
         <dependency>
             <groupId>org.apache.flink</groupId>
@@ -30,29 +62,13 @@
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-table-planner-loader</artifactId>
-            <version>${flink.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flink</groupId>
             <artifactId>flink-clients</artifactId>
-            <version>${flink.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-sql-parser</artifactId>
-            <version>${flink.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-sql-parser</artifactId>
             <version>${flink.version}</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.apache.flink</groupId>-->
-<!--            <artifactId>flink-table-planner_${scala.binary.version}</artifactId>-->
+<!--            <artifactId>flink-sql-parser</artifactId>-->
 <!--            <version>${flink.version}</version>-->
-<!--            <scope>compile</scope>-->
 <!--        </dependency>-->
         <!--        日志配置-->
         <dependency>
@@ -97,6 +113,9 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.1.1</version>
+                <configuration>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -124,7 +143,7 @@
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <!-- Replace this with the main class of your job -->
-                                    <mainClass>my.programs.main.clazz</mainClass>
+                                    <mainClass>cn.izualzhy.Flink115Test</mainClass>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                             </transformers>
