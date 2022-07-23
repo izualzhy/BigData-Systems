@@ -5,13 +5,6 @@ import org.apache.flink.table.api.bridge.scala.{StreamTableEnvironment, tableCon
 import org.apache.flink.table.functions.TableFunction
 import org.apache.flink.types.Row
 
-/**
- * Author: yingshin
- * Date: 2022/3/11 13:52
- * Package: cn.izualzhy
- * Description:
- *
- */
 object FieldNameUsingTableFunction extends App {
   val env = StreamExecutionEnvironment.getExecutionEnvironment
   env.setParallelism(1)

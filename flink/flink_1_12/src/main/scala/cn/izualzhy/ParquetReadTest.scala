@@ -5,14 +5,6 @@ import org.apache.flink.table.api.bridge.scala.StreamTableEnvironment
 
 import scala.collection.JavaConverters._
 
-
-/**
- * Author: yingshin
- * Date: 2022/4/7 18:59
- * Package: cn.izualzhy
- * Description:
- *
- */
 object ParquetReadTest extends App {
   val env = StreamExecutionEnvironment.getExecutionEnvironment
   env.setParallelism(1)
